@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites', 
-    'app',
+    'app.apps.AppConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -103,6 +103,8 @@ AUTHENTICATION_BACKENDS = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -125,7 +127,19 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {}
+#DATABASES = { #to puste
+       # 'default': {
+      #  'ENGINE': 'django.db.backends.mysql',
+       # 'OPTIONS': {
+      #      'sql_mode': 'traditional',
+      #  },
+      #  'NAME': 'react-django-rest',
+      #  'USER': 'kubako1428',
+      #  'PASSWORD': 'smokismoki1',
+      #  'HOST': '127.0.0.1',
+      #  'PORT': '3306',
+      #  }
+#}
 
 if(len(env('DB_HOST'))):
     DATABASES = {
@@ -141,10 +155,17 @@ if(len(env('DB_HOST'))):
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        },
+        'NAME': 'final',
+        'USER': 'kubako1428',
+        'PASSWORD': 'smokismoki1',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
+}
 
 
 # Password validation
@@ -188,14 +209,42 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="./credential.json"
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/api/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/api/media/'
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+GS_PROJECT_ID = 'virtual-firefly-307810'
+GS_BUCKET_NAME = 'zsi-django-react'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/uploads/'
+
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

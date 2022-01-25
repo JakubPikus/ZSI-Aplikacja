@@ -1,6 +1,6 @@
 from django.urls import include, path
 from rest_framework import routers
-from .views import PostViewSet, CommentViewSet
+from .views import PostViewSet, CommentViewSet, ProfileViewSet, UserViewSet
 from django.conf.urls.static import static 
 from django.conf.urls import url
 from django.conf import settings
@@ -8,6 +8,8 @@ from django.conf import settings
 router = routers.DefaultRouter()
 router.register(r'posts', PostViewSet)
 router.register(r'comments', CommentViewSet)
+router.register(r'profiles', ProfileViewSet)
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     url(r'api/', include(router.urls)),

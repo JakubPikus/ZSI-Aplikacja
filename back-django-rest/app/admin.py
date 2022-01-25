@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import Post , Comment
+from .models import Post , Comment, Profile
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
 
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title','status','created_date',]
+    list_display = ['post_author','title','status','created_date',]
     #author
-    fields= ['title','description','image','image_image','status','created_date','published_date',]
+    fields= ['post_author','title','description','image','image_image','status','created_date',]
     #author
     readonly_fields = ['created_date','image_image',]
     list_filter = ['status',]
@@ -25,12 +25,13 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 
+admin.site.register(Profile)
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['text','post','created_date',]
+    list_display = ['comment_author','text','post','created_date',]
     #author
-    fields= ['post', 'text','created_date','edit_date',]
+    fields= ['post', 'comment_author', 'text','created_date',]
     #author
     readonly_fields = ['created_date',]
     
