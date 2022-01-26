@@ -4,6 +4,7 @@ python3 -m pip install --upgrade pip<br>
 pip install -r requirements.txt<br>
 py manage.py makemigrations<br>
 py manage.py migrate<br>
+py manage.py migrate --run-syncdb<br>
 py manage.py runserver<br>
 
 
