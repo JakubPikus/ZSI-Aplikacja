@@ -155,17 +155,11 @@ if(len(env('DB_HOST'))):
 else:
     DATABASES = {
         'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        },
-        'NAME': 'final',
-        'USER': 'kubako1428',
-        'PASSWORD': 'smokismoki1',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+
 
 
 # Password validation
