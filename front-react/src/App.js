@@ -5,8 +5,10 @@ import CommentAdd from './components/CommentAdd.js';
 import PostAdd from './components/PostAdd.js';
 import Login from './components/Login.js';
 import Logout from './components/Logout.js';
+import Register from './components/Register.js';
 import { Button, Navbar, Container, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 
 
@@ -32,8 +34,11 @@ class App extends Component{
           
             
                 <Col>
-                  <Button variant="light">Light</Button>
-                  <Button className="ms-3" variant="light">Light</Button>
+                  <Router>
+                    <Link to="/registration"><Button variant="light">Zarejestruj się</Button></Link>
+                    <Link to="/login"><Button className="ms-3" variant="light">Zaloguj się</Button></Link>
+                    <Link to="/logout"><Button className="ms-3" variant="light">Wyloguj</Button></Link>
+                  </Router>
 
                 </Col>
                 <Col xs={6}>
@@ -46,9 +51,13 @@ class App extends Component{
                 </Col>
 
                 <Col>
-
+                  <Router> 
+                    <Link to="/post"><Button variant="light">Wstaw post</Button></Link>
+                    <Link to="/"><Button className="ms-3" variant="light">Strona główna</Button></Link>
+                  </Router>
                 </Col>
           </Navbar>
+          
 
           <CommentList></CommentList>
 
@@ -66,7 +75,16 @@ class App extends Component{
             <Login></Login>
             
           </Container>
+
+          <Container>
+            <Register></Register>
+            
+          </Container>
+
+
+
           <Logout></Logout>
+
 
 
 
