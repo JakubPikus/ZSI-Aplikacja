@@ -221,7 +221,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_PROJECT_ID = 'virtual-firefly-307810'
 GS_BUCKET_NAME = 'zsi-django-react'
 MEDIA_ROOT = "media/"
-UPLOAD_ROOT = 'media/uploads/'
 
 MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
     
