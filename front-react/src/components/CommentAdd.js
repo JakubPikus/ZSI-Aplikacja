@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Card, Button, Container } from 'react-bootstrap';
 
 export default class CommentAdd extends React.Component {
   
@@ -7,6 +8,7 @@ export default class CommentAdd extends React.Component {
         super(props)
 
         this.state = {
+            comment_author: null,
             post: '',
             text: ''
         }
@@ -27,16 +29,20 @@ export default class CommentAdd extends React.Component {
         }).catch(err => console.log(err));
         }
     render() {
-        const { post, text } = this.state
+        const { comment_author, post, text } = this.state
         return (
         <div>
             <form onSubmit={this.handleSubmit}>
             <label>
-                Comment add:
-                <input type="text" name="post" value={post} onChange={this.handleChange} />
-                <input type="text" name="text" value={text} onChange={this.handleChange} />
+                Comment add
+                <br></br>
+                Author profile <input type="text" name="comment_author" value={comment_author} onChange={this.handleChange} /><br></br>
+                Post <input type="text" name="post" value={post} onChange={this.handleChange} />
+                <br></br>
+                Text <input type="text" name="text" value={text} onChange={this.handleChange} />
+                
             </label>
-            <button type="submit">Add</button>
+            <Button variant="dark" type="submit">Skomentuj</Button>
             </form>
         </div>
         )

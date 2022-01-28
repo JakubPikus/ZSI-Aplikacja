@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Button  } from 'react-bootstrap';
 
 export default class CommentAdd extends React.Component {
   
@@ -29,10 +30,8 @@ export default class CommentAdd extends React.Component {
         <div>
             <form onSubmit={this.handleSubmit}>
             <label>
-                Logout:
-                
             </label>
-            <button type="submit">Add</button>
+            <Button variant="light" type="submit">Wyloguj się</Button>
             </form>
         </div>
         )

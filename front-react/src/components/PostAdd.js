@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Card, Button, Container } from 'react-bootstrap';
 
 export default class PostAdd extends React.Component {
   
@@ -7,6 +8,7 @@ export default class PostAdd extends React.Component {
         super(props)
 
         this.state = {
+            post_author: null,
             title: '',
             description: '',
             image: null
@@ -28,10 +30,14 @@ export default class PostAdd extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         let form_data = new FormData();
-        
+        form_data.append('post_author', this.state.post_author);
         form_data.append('title', this.state.title);
         form_data.append('description', this.state.description);
         form_data.append('image', this.state.image, this.state.image.name);
+        console.log(form_data.data)
+
+        
+
         
         axios.post(`posts/`, form_data, {
             headers: {
@@ -41,22 +47,26 @@ export default class PostAdd extends React.Component {
         .then(res => {
             console.log(res)
             console.log(res.data)
-        }).catch(err => console.log(err));
+        }).catch(err => console.log(err.data));
         }
 
     render() {
-        const { title, description } = this.state
+        const { post_author, title, description } = this.state
         return (
         <div>
             <form onSubmit={this.handleSubmit}>
             <label>
-                Post add:
-                <input type="text" name="title" value={title} onChange={this.handleChange} />
-                <input type="text" name="description" value={description} onChange={this.handleChange} />
+                Post add<br></br><br></br>
+                Author profile <input type="text" name="post_author" value={post_author} onChange={this.handleChange} /><br></br><br></br>
+                Title <input type="text" name="title" value={title} onChange={this.handleChange} /><br></br><br></br>
+                Description <input type="text" name="description" value={description} onChange={this.handleChange} /><br></br><br></br>
                 <input type="file" name="image" onChange={this.handleImageChange} />
           
             </label>
-            <button type="submit">Add</button>
+            <Container className='mt-3'>
+                <Button variant="light" type="submit">Dodaj post</Button>
+            </Container>
+            
             </form>
         </div>
         )

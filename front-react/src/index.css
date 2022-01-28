@@ -12,6 +12,8 @@ code {
     monospace;
 }
 
-
+ul {
+  list-style-type: none;
+}
 
 

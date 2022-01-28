@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './App.css';
-import CommentList from './components/CommentList.js';
+import PostList from './components/PostList.js';
 import CommentAdd from './components/CommentAdd.js';
 import PostAdd from './components/PostAdd.js';
 import Login from './components/Login.js';
@@ -8,7 +8,7 @@ import Logout from './components/Logout.js';
 import Register from './components/Register.js';
 import { Button, Navbar, Container, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Routes } from "react-router-dom";
 
 
 
@@ -29,19 +29,19 @@ class App extends Component{
   return (
     <div className="App">
       <header className="App-header">
+      <Router>
       <Container>
           <Navbar variant="dark" bg="dark" className="navbar-back" fixed="top">
           
             
                 <Col>
-                  <Router>
+                  
                     <Link to="/registration"><Button variant="light">Zarejestruj się</Button></Link>
-                    <Link to="/login"><Button className="ms-3" variant="light">Zaloguj się</Button></Link>
-                    <Link to="/logout"><Button className="ms-3" variant="light">Wyloguj</Button></Link>
-                  </Router>
-
+                    <Link className="ms-3" to="/login"><Button variant="light">Zaloguj się</Button></Link>
+                    <Logout></Logout>
+                  
                 </Col>
-                <Col xs={6}>
+                <Col xs={5}>
                   <Navbar.Brand>
                     <a>Jakub Pikus</a>
                     <br>
@@ -51,58 +51,52 @@ class App extends Component{
                 </Col>
 
                 <Col>
-                  <Router> 
-                    <Link to="/post"><Button variant="light">Wstaw post</Button></Link>
-                    <Link to="/"><Button className="ms-3" variant="light">Strona główna</Button></Link>
-                  </Router>
+                  <Link to="/postadd"><Button variant="light">Wstaw post</Button></Link>
+
+                  <Link className="ms-3" to="/"><Button variant="light">Strona główna</Button></Link>
+                
+                      
+                     
+                    
+                  
                 </Col>
           </Navbar>
+
+
           
+            <Switch>
+               <Route exact path="/">
+                 <PostList></PostList>
+               </Route>
 
-          <CommentList></CommentList>
+               <Route path="/registration">
+                 <Register></Register>
+               </Route>
 
-          <Container>
-            <CommentAdd></CommentAdd>
-
-          </Container>
-
-          <Container>
-            <PostAdd></PostAdd>
-            
-          </Container>
-
-          <Container>
-            <Login></Login>
-            
-          </Container>
-
-          <Container>
-            <Register></Register>
-            
-          </Container>
+               <Route path="/login">
+                 <Login></Login>
+               </Route>
 
 
+               <Route path="/postadd">
+                 <PostAdd></PostAdd>
+               </Route>
 
-          <Logout></Logout>
+            </Switch>
 
-
+          
 
 
 
 
 
           
+
+         
 
         </Container>
 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        </Router>
       </header>
     </div>
   );}
